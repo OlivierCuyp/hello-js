@@ -1,0 +1,11 @@
+version: '2'
+services:
+  bot:
+    image: oliviercuyp/hello-js
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - ./package.json:/opt/package.json
+      - ./package-lock.json:/opt/package-lock.json
+      - ./src:/opt/src
