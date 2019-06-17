@@ -4,7 +4,8 @@ const logger = require('pino')();
 const expressPino = require('express-pino-logger')({ logger });
 
 const app = express();
-const port = process.env.APP_PORT || 3000;
+const port = parseInt(process.env.APP_PORT || 3000, 10);
+const startDelay = parseInt(process.env.START_DELAY || 0, 10) * 1000;
 const name = process.env.NAME || 'JS';
 
 app.use(cookieParser());
@@ -32,4 +33,6 @@ app.use((error, req, res, next) => {
   res.json({ error: error.message });
 });
 
-app.listen(port, () => logger.info(`Hello-js listening on port ${port} !`));
+setTimeout(() => {
+  app.listen(port, () => logger.info(`Hello-js listening on port ${port} !`));
+}, startDelay);

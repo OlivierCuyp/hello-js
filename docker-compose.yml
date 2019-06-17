@@ -10,6 +10,7 @@ services:
     environment:
       APP_PORT: 3000
       NAME: JS
+      START_DELAY: 0
     volumes:
       - ./package.json:/opt/package.json
       - ./package-lock.json:/opt/package-lock.json
